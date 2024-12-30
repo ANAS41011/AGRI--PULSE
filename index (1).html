@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية | منصة المزارعين</title>
+    
+    <!-- روابط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome (أيقونات) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Slick Carousel CSS (لإضافة الصور المتحركة) -->
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+    
+    <!-- ملف CSS الخاص بالتصميم -->
+    <link rel="stylesheet" href=".css">
+
+    <!-- ملف JavaScript الخاص بالتفاعلات -->
+    <script defer src="script.js"></script>
+    
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">🌾 Agri puls </div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">الرئيسية</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="fet.html">قيمنا</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-1.html">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services (1).html">الخدمات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact (1).html">تواصل معنا</a>
+                        </li>
+                        <a class="nav-link" href="المجتمع.html">المجتمع</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- زر تسجيل الخروج -->
+            <a href="login.html" class="btn btn-danger">تسجيل الخروج</a>
+        </div>
+    </header>
+
+    <!-- قسم البطل (Hero Section) -->
+    <section class="hero d-flex align-items-center justify-content-center text-center">
+        <div class="container">
+            <h1 class="display-4 text-white">مرحبًا بكم في منصة المزارعين</h1>
+            <p class="lead text-white">حلول زراعية متكاملة لدعم مجتمع المزارعين.</p>
+            <a href="services (1).html" class="btn btn-warning btn-start">ابدأ الآن</a>
+        </div>
+    </section>
+
+    <style>
+        .hero {
+            background-image: url(pic.jpg); /* استبدل برابط الصورة الخاص بك */
+            background-size: cover; /* تغطية كاملة للقسم */
+            background-position: center; /* محاذاة الصورة في المنتصف */
+            max-height: 70vh; /* الحد الأقصى للارتفاع 60% من ارتفاع الشاشة */
+            padding: 100px; /* حشوة 100 بكسل من جميع الاتجاهات */
+            display: flex; /* استخدام flexbox */
+            align-items: center; /* محاذاة العناصر عموديًا في المنتصف */
+            justify-content: center; /* محاذاة العناصر أفقيًا في المنتصف */
+            text-align: center; /* محاذاة النص في المنتصف */
+            opacity: 0; /* جعل القسم غير مرئي في البداية */
+            animation: fadeIn 1s forwards; /* تطبيق تأثير التلاشي */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* البداية غير مرئية */
+            }
+            to {
+                opacity: 1; /* النهاية مرئية */
+            }
+        }
+    </style>
+
+   <!-- قسم المزايا -->
+<section class="features py-5">
+    <div class="container">
+        <h2 class="text-center mb-4 text-success">ماذا نقدم؟</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="agricultural-tips-1.html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-seedling fa-3x mb-3"></i>
+                    <h3>نصائح زراعية</h3>
+                    <p>احصل على نصائح زراعية لتحسين محاصيلك وزيادة الإنتاجية.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="expert-consultation (1).html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-headset fa-3x mb-3"></i>
+                    <h3>تواصل مع الخبراء</h3>
+                    <p>تواصل مباشرة مع خبراء في المجال الزراعي للحصول على استشارات.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="online-market (1).html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-store fa-3x mb-3"></i>
+                    <h3>سوق إلكتروني</h3>
+                    <p>بيع وشراء المنتجات الزراعية عبر منصتنا الإلكترونية بسهولة.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="price-guide (1).html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-chart-line fa-3x mb-3"></i>
+                    <h3>دليل الأسعار</h3>
+                    <p>احصل على دليل الأسعار الخاصة بالمنتجات الزراعية في السوق المحلي والعالمي.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="weather-alerts-1.html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-cloud-sun fa-3x mb-3"></i>
+                    <h3>تنبيهات الطقس</h3>
+                    <p>كن على اطلاع دائم بحالة الطقس وأثرها على محاصيلك الزراعية.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="equipment-rental (1).html" class="feature-box btn btn-success btn-animated">
+                    <i class="fas fa-tools fa-3x mb-3"></i>
+                    <h3>تأجير المعدات</h3>
+                    <p>استأجر المعدات الزراعية الحديثة لزيادة الإنتاجية وتوفير التكاليف.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- الفوتر -->
+    <footer class="footer py-4">
+        <div class="container text-center">
+            <p>© 2025 منصة المزارعين. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- تحميل Bootstrap و jQuery و Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+</body>
+</html>
