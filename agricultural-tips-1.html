@@ -4,35 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نصائح للمزارعين</title>
-    <a href="tips.css"></a>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert"></script>
-   <style>
+    <style>
         body {
             font-family: 'Cairo', serif;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
             direction: rtl;
+            color: #333;
         }
-        /* الهيدر */
         .header {
-            background-color: #1d6f3f; /* أخضر داكن */
-            padding: 20px 0;
+            background-color: #1d6f3f;
+            padding: 15px 0;
             color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 3px solid #ffc107; /* خط أصفر عند الهيدر */
+            border-bottom: 3px solid #ffc107;
         }
         .container {
-            width: 85%;
+            width: 90%;
             margin: 0 auto;
             padding: 20px;
         }
         .section-title {
-            font-size: 40px;
+            font-size: 2.5rem;
             font-weight: bold;
             text-align: center;
-            color: #000000;
+            color: #1d6f3f;
             border-bottom: 2px solid #4CAF50;
             padding-bottom: 10px;
             margin-bottom: 20px;
@@ -40,38 +39,39 @@
         .tips-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; 
-            justify-content: space-between; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            gap: 20px;
+            justify-content: space-between;
         }
         .tip {
-            background-color: rgb(249, 249, 249);
-            margin: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            box-decoration-break: clone;
-            box-shadow: 5px 4px 8px rgb(136, 136, 136);
-            font-size: 14px;
-            width: calc(33.33% - 20px); /* عرض كل نصيحة */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: calc(33.33% - 20px);
             box-sizing: border-box;
+        }
+        .tip:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
         .tip h3 {
             color: #1c8a20;
             margin-top: 0;
+            font-size: 1.2rem;
             font-weight: bold;
-            font-size: 16px;
         }
         .tip p {
-            color: #000000;
-            font-size: 14px;
-            font-style: bold;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         .tip button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 8px 16px;
-            font-size: 14px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s ease;
@@ -80,7 +80,7 @@
             background-color: #45a049;
         }
         footer {
-            background-color: #333;
+            background-color: #1d6f3f;
             color: white;
             text-align: center;
             padding: 15px;
@@ -97,202 +97,170 @@
             color: white;
             padding: 10px 20px;
             border: none;
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
             border-radius: 5px;
-            margin: 10px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
         }
-        button:hover {
-    background-color: #002ead; /* Lighter shade on hover */
-    transition: background-color 0.3s ease; /* Smooth transition */
-}
-        /* الشعار */
+        .button-container button:hover {
+            background-color: #002ead;
+        }
+        .button-container button:active {
+            background-color: #ffbf00;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
         .logo {
-            font-size: 36px;
+            font-size: 2rem;
             font-weight: bold;
             letter-spacing: 1px;
         }
-        /* شريط التنقل */
         .navbar-nav .nav-link {
             color: white !important;
             font-weight: bold;
-            padding: 0px 20px;
+            padding: 10px 20px;
         }
         .navbar-nav .nav-link:hover {
             color: #ffc107 !important;
             background-color: rgba(255, 193, 7, 0.2);
             border-radius: 5px;
         }
-        /* التنقل المتجاوب */
         @media (max-width: 767px) {
             .navbar-nav {
                 text-align: center;
             }
             .tip {
-                width: calc(100% - 20px); /* عرض النصائح في الشاشات الصغيرة */
+                width: calc(100% - 20px);
             }
         }
-        .tips-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    transform: translateY(-10px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.tip {
-    width: calc(33.33% - 20px); /* عرض كل عمود */
-    margin: 3.2px /* المسافة بين الأعمدة */
-}
-button:active {
-    background-color: #ffbf00; /* Change color on click */
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5); /* Inner shadow effect */
-}
     </style>
 </head>
 <body>
-
-<header>
-  
-          <!-- الهيدر -->
-          <header class="header sticky-top">
-            <div class="container">
-                <!-- الشعار -->
-                <div class="logo">🌾 نبض الزراعة</div>
-                <!-- شريط التنقل -->
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.html">الرئيسية</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="about-1.html">من نحن</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="services (1).html">الخدمات</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Contact (1).html">تواصل معنا</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
-    
-        <!-- إضافة جافا سكريبت لتفعيل زر التبديل -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
-    </body>
-    </html>
-    
+    <header class="header sticky-top">
+        <div class="container">
+            <div class="logo">🌾 نبض الزراعة</div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-1.html">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services (1).html">الخدمات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact (1).html">تواصل معنا</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
-<div class="container">
-    <section>
-        <h2 class="section-title">نصائح هامة للمزارعين</h2>
-        <div id="tips-container" class="tips-container"></div>
-    </section>
-</div>
 
-<div class="button-container">
-    <button onclick="updateTips()">تحديث النصائح</button>
-    <button onclick="showFavorites()">عرض النصائح المفضلة</button>
-</div>
+    <div class="container">
+        <section>
+            <h2 class="section-title">نصائح هامة للمزارعين</h2>
+            <div id="tips-container" class="tips-container"></div>
+        </section>
+    </div>
 
+    <div class="button-container">
+        <button onclick="updateTips()">تحديث النصائح</button>
+        <button onclick="showFavorites()">عرض النصائح المفضلة</button>
+    </div>
 
-<script>
-      // قائمة النصائح
-      const tips = [
-    { title: "أهمية الري بشكل منتظم", content: "الري الجيد والمناسب للمحاصيل هو أساس الإنتاج الزراعي الناجح." },
-    { title: "اختيار التوقيت المناسب للحصاد", content: "يجب أن يتم الحصاد في الوقت المناسب للمحافظة على جودة المحاصيل." },
-    { title: "استخدام الأسمدة بشكل مدروس", content: "استخدام الأسمدة يعد أحد العوامل الرئيسية في تحسين نمو المحاصيل." },
-    { title: "مكافحة الآفات بشكل طبيعي", content: "استخدام المبيدات الطبيعية يقلل من التلوث ويحسن صحة المحاصيل." },
-    { title: "استخدام أنظمة الزراعة الحديثة", content: "تقنيات الزراعة الحديثة تساعد في تحسين الإنتاج وتقليل التكاليف." },
-    { title: "تحسين نوعية التربة", content: "التربة الجيدة هي أساس النجاح في الزراعة، استخدم الأسمدة الطبيعية لتحسينها." },
-    { title: "مراقبة الطقس باستمرار", content: "يجب مراقبة التغيرات الجوية لأن الظروف المناخية تؤثر على نمو المحاصيل." },
-    { title: "تنويع المحاصيل", content: "تنويع المحاصيل يساعد في تقليل المخاطر وزيادة الإنتاج." },
-    { title: "استخدام تقنيات الزراعة المستدامة", content: "الزراعة المستدامة تحافظ على البيئة وتضمن استمرارية الإنتاج." },
-    { title: "تدوير المحاصيل", content: "تدوير المحاصيل يساعد في تحسين خصوبة التربة وتقليل الآفات." },
-    { title: "تطبيق تقنيات الزراعة الدقيقة", content: "الزراعة الدقيقة تساعد في تحسين كفاءة استخدام الموارد." },
-    { title: "توفير المياه", content: "استخدام تقنيات الري الحديثة يساعد في توفير المياه وزيادة الإنتاج." },
-    { title: "تدريب العمالة", content: "تدريب العمالة على تقنيات الزراعة الحديثة يزيد من الإنتاجية." },
-    { title: "مراقبة صحة النباتات", content: "مراقبة صحة النباتات بشكل دوري يساعد في اكتشاف المشاكل مبكرًا." },
-    { title: "استخدام التكنولوجيا في الزراعة", content: "التكنولوجيا تساعد في تحسين الإنتاج وتقليل التكاليف." },
-    { title: "تخزين المحاصيل بشكل صحيح", content: "تخزين المحاصيل في ظروف مناسبة يحافظ على جودتها." },
-    { title: "تقييم التربة بانتظام", content: "تقييم التربة يساعد في تحديد احتياجاتها من العناصر الغذائية." },
-    { title: "تجنب الإفراط في استخدام المبيدات", content: "الإفراط في استخدام المبيدات يمكن أن يؤثر سلبًا على البيئة وصحة المحاصيل." },
-    { title: "تطبيق الزراعة العضوية", content: "الزراعة العضوية تعزز من صحة التربة وتقلل من التلوث." },
-    { title: "مشاركة المعرفة مع المزارعين الآخرين", content: "مشاركة المعرفة والخبرات تعزز من تحسين الممارسات الزراعية." },
-    { title: "تقييم المخاطر المناخية", content: "تقييم المخاطر المناخية يساعد في اتخاذ قرارات زراعية أفضل." },
-];
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025</p>
+    </footer>
 
-    let favoriteTips = [];
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const tips = [
+            { title: "أهمية الري بشكل منتظم", content: "الري الجيد والمناسب للمحاصيل هو أساس الإنتاج الزراعي الناجح." },
+            { title: "اختيار التوقيت المناسب للحصاد", content: "يجب أن يتم الحصاد في الوقت المناسب للمحافظة على جودة المحاصيل." },
+            { title: "استخدام الأسمدة بشكل مدروس", content: "استخدام الأسمدة يعد أحد العوامل الرئيسية في تحسين نمو المحاصيل." },
+            { title: "مكافحة الآفات بشكل طبيعي", content: "استخدام المبيدات الطبيعية يقلل من التلوث ويحسن صحة المحاصيل." },
+            { title: "استخدام أنظمة الزراعة الحديثة", content: "تقنيات الزراعة الحديثة تساعد في تحسين الإنتاج وتقليل التكاليف." },
+            { title: "تحسين نوعية التربة", content: "التربة الجيدة هي أساس النجاح في الزراعة، استخدم الأسمدة الطبيعية لتحسينها." },
+            { title: "مراقبة الطقس باستمرار", content: "يجب مراقبة التغيرات الجوية لأن الظروف المناخية تؤثر على نمو المحاصيل." },
+            { title: "تنويع المحاصيل", content: "تنويع المحاصيل يساعد في تقليل المخاطر وزيادة الإنتاج." },
+            { title: "استخدام تقنيات الزراعة المستدامة", content: "الزراعة المستدامة تحافظ على البيئة وتضمن استمرارية الإنتاج." },
+            { title: "تدوير المحاصيل", content: "تدوير المحاصيل يساعد في تحسين خصوبة التربة وتقليل الآفات." },
+            { title: "تطبيق تقنيات الزراعة الدقيقة", content: "الزراعة الدقيقة تساعد في تحسين كفاءة استخدام الموارد." },
+            { title: "توفير المياه", content: "استخدام تقنيات الري الحديثة يساعد في توفير المياه وزيادة الإنتاج." },
+            { title: "تدريب العمالة", content: "تدريب العمالة على تقنيات الزراعة الحديثة يزيد من الإنتاجية." },
+            { title: "مراقبة صحة النباتات", content: "مراقبة صحة النباتات بشكل دوري يساعد في اكتشاف المشاكل مبكرًا." },
+            { title: "استخدام التكنولوجيا في الزراعة", content: "التكنولوجيا تساعد في تحسين الإنتاج وتقليل التكاليف." },
+            { title: "تخزين المحاصيل بشكل صحيح", content: "تخزين المحاصيل في ظروف مناسبة يحافظ على جودتها." },
+            { title: "تقييم التربة بانتظام", content: "تقييم التربة يساعد في تحديد احتياجاتها من العناصر الغذائية." },
+            { title: "تجنب الإفراط في استخدام المبيدات", content: "الإفراط في استخدام المبيدات يمكن أن يؤثر سلبًا على البيئة وصحة المحاصيل." },
+            { title: "تطبيق الزراعة العضوية", content: "الزراعة العضوية تعزز من صحة التربة وتقلل من التلوث." },
+            { title: "مشاركة المعرفة مع المزارعين الآخرين", content: "مشاركة المعرفة والخبرات تعزز من تحسين الممارسات الزراعية." },
+            { title: "تقييم المخاطر المناخية", content: "تقييم المخاطر المناخية يساعد في اتخاذ قرارات زراعية أفضل." },
+        ];
 
-    // دالة لعرض النصائح
-    function displayTips(tipsList) {
-        const tipsContainer = document.getElementById('tips-container');
-        tipsContainer.innerHTML = '';  // مسح النصائح السابقة
-        tipsList.forEach((tip, index) => {
-            const tipElement = document.createElement('div');
-            tipElement.classList.add('tip');
-            tipElement.innerHTML = `
-                <h3>${tip.title}</h3>
-                <p>${tip.content}</p>
-                <button onclick="addToFavorites(${index})">أضف إلى المفضلة</button>
-            `;
-            tipsContainer.appendChild(tipElement);
-        });
-    }
+        let favoriteTips = [];
 
-  // لإضافة النصيحة إلى المفضلة
-function addToFavorites(index) {
-    const tip = tips[index];
-    if (!favoriteTips.includes(tip)) {
-        favoriteTips.push(tip);
-        swal("تم إضافة النصيحة إلى المفضلة!", {
-            icon: "success",
-        });
-    } else {
-        swal("النصيحة موجودة بالفعل في المفضلة.", {
-            icon: "warning",
-        });
-    }
-}
-
-// تحديث النصائح
-function updateTips() {
-    const randomTips = shuffleArray(tips).slice(0, 15);
-    displayTips(randomTips);
-}
-
-// عرض النصائح المفضلة
-function showFavorites() {
-    if (favoriteTips.length > 0) {
-        displayTips(favoriteTips);
-    } else {
-        swal("لا توجد نصائح مفضلة بعد!", {
-            icon: "info",
-        });
-    }
-}
-
-    // دالة لخلط النصائح عشوائيًا
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        function displayTips(tipsList) {
+            const tipsContainer = document.getElementById('tips-container');
+            tipsContainer.innerHTML = '';
+            tipsList.forEach((tip, index) => {
+                const tipElement = document.createElement('div');
+                tipElement.classList.add('tip');
+                tipElement.innerHTML = `
+                    <h3>${tip.title}</h3>
+                    <p>${tip.content}</p>
+                    <button onclick="addToFavorites(${index})">أضف إلى المفضلة</button>
+                `;
+                tipsContainer.appendChild(tipElement);
+            });
         }
-        return array;
-    }
 
-    // عرض النصائح لأول مرة
-    displayTips(tips);
-</script>
-<footer>
-    <p>جميع الحقوق محفوظة &copy; 2025</p>
-</footer>
+        function addToFavorites(index) {
+            const tip = tips[index];
+            if (!favoriteTips.includes(tip)) {
+                favoriteTips.push(tip);
+                swal("تم إضافة النصيحة إلى المفضلة!", {
+                    icon: "success",
+                });
+            } else {
+                swal("النصيحة موجودة بالفعل في المفضلة.", {
+                    icon: "warning",
+                });
+            }
+        }
+
+        function updateTips() {
+            const randomTips = shuffleArray(tips).slice(0, 15);
+            displayTips(randomTips);
+        }
+
+        function showFavorites() {
+            if (favoriteTips.length > 0) {
+                displayTips(favoriteTips);
+            } else {
+                swal("لا توجد نصائح مفضلة بعد!", {
+                    icon: "info",
+                });
+            }
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        displayTips(tips);
+    </script>
 </body>
 </html>

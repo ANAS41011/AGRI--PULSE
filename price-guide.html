@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الأسعار | منصة المزارعين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* تنسيق عام */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* الهيدر */
+        .header {
+            background-color: #28a745;
+            padding: 20px 0;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* البحث */
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-box input {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background-color: #218838;
+        }
+
+        /* دليل الأسعار */
+        .price-guide h3 {
+            color: #28a745;
+            margin-top: 30px;
+        }
+
+        .price-guide ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .price-guide ul li {
+            background-color: #e9ecef;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .price-guide ul li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .price-guide ul li span {
+            font-weight: bold;
+        }
+
+        .price-guide ul li .price {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .price-guide ul li.up {
+            color: green;
+        }
+
+        .price-guide ul li.down {
+            color: red;
+        }
+
+        .price-guide p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* الفوتر */
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header class="header sticky-top">
+        <div class="container">
+            <div class="logo">🌾 نبض الزراعة</div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">الرئيسية</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-1.html">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services (1).html">الخدمات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact (1).html">تواصل معنا</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- البحث -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج...">
+        <button onclick="filterPrices()">بحث</button>
+    </div>
+
+    <!-- محتوى الخدمة -->
+    <section class="service-detail py-5">
+        <div class="container text-center">
+            <h2>دليل الأسعار</h2>
+            <p>اطلع على أسعار المنتجات الزراعية والخدمات المتاحة عبر منصتنا.</p>
+            
+            <div class="price-guide">
+                <h3>الأسعار الحالية:</h3>
+                <ul id="priceList">
+                    <!-- سيتم تحديث الأسعار هنا من خلال JavaScript -->
+                </ul>
+                <p>للحصول على تفاصيل أكثر، يمكنك التصفح عبر قسم الأسعار في الموقع.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer py-4">
+        <div class="container text-center">
+            <p>© 2024 منصة المزارعين. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- إضافة جافا سكريبت لتحديث الأسعار -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // قائمة الأسعار
+        const prices = [
+            { name: "السماد الطبيعي", price: 300, change: 10 },  // زيادة في السعر
+            { name: "بذور القمح", price: 200, change: -5 },  // انخفاض في السعر
+            { name: "الآلات الزراعية", price: 1500, change: 20 },  // زيادة في السعر
+            { name: "الأرز", price: 8200, change: -30 },
+            { name: "الذرة", price: 7800, change: 20 },
+            { name: "الفول", price: 10200, change: -70 },
+            { name: "العدس", price: 11000, change: 100 },
+            { name: "السمسم", price: 15000, change: -50 },
+            { name: "الشوفان", price: 6800, change: 30 },
+            { name: "الشعير", price: 7400, change: -20 },
+            { name: "الكركم", price: 20000, change: 150 },
+            { name: "الكينوا", price: 30000, change: -100 }
+        ];
+
+        // دالة لإظهار الأسعار
+        function displayPrices(filteredPrices) {
+            let priceList = document.getElementById("priceList");
+            priceList.innerHTML = ""; // مسح القائمة الحالية
+
+            filteredPrices.forEach(item => {
+                let li = document.createElement("li");
+                li.classList.add(item.change > 0 ? "up" : "down");
+
+                li.innerHTML = `
+                    <span>${item.name}</span>
+                    <span class="price">${item.price} جنيه</span>
+                    <span class="change">${item.change > 0 ? `+${item.change}` : item.change} جنيه</span>
+                `;
+                priceList.appendChild(li);
+            });
+        }
+
+        // عرض الأسعار عند تحميل الصفحة
+        displayPrices(prices);
+
+        // دالة للبحث عن المنتجات
+        function filterPrices() {
+            const query = document.getElementById("searchInput").value.trim().toLowerCase();
+            const filteredPrices = prices.filter(item =>
+                item.name.toLowerCase().includes(query)
+            );
+            displayPrices(filteredPrices);
+        }
+    </script>
+</body>
+</html>

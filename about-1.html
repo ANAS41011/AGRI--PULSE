@@ -2,13 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <!-- عشان الصفحة تعمل على كل الأجهزة -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>من نحن | منصة المزارعين</title>
+    <!-- خط عربي حلو اسمه "Cairo" -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- استخدمنا bootstrap عشان التصميم يكون سهل ومرتب -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- أيقونات font-awesome عشان نضيف شكل حلو للأيقونات -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
-        /* تنسيق عام */
+        /* ستايل عام للصفحة */
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f4f4f4;
@@ -16,7 +20,7 @@
             padding: 0;
         }
 
-        /* الهيدر */
+        /* الهيدر بتاع الصفحة */
         .header {
             background-color: #28a745;
             padding: 20px 0;
@@ -24,16 +28,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* روابط القائمة الرئيسية */
         .navbar-nav .nav-link {
             color: white !important;
             font-weight: bold;
             padding: 10px 15px;
         }
 
+        /* لما يقف الفأرة على الرابط يغير لونه */
         .navbar-nav .nav-link:hover {
             color: #ffc107 !important;
         }
 
+        /* الشعار بتاع الموقع */
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
@@ -47,12 +54,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* عنوان القسم */
         .about h2 {
             font-size: 2.8rem;
             color: #333;
             margin-bottom: 20px;
         }
 
+        /* الفقرة اللي فيها شرح عن المنصة */
         .about p {
             font-size: 1.3rem;
             color: #555;
@@ -61,7 +70,7 @@
             margin: 0 auto 40px;
         }
 
-        /* قسم الملخص */
+        /* قسم الملخص اللي فيه النقاط المهمة */
         .key-items {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -69,6 +78,7 @@
             margin-top: 50px;
         }
 
+        /* كل نقطة في الملخص */
         .key-items .item {
             background-color: #fff;
             padding: 30px;
@@ -78,29 +88,33 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        /* لما يقف الفأرة على النقطة */
         .key-items .item:hover {
             transform: translateY(-10px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
+        /* الأيقونات اللي داخل النقاط */
         .key-items .item i {
             font-size: 3rem;
             color: #28a745;
             margin-bottom: 15px;
         }
 
+        /* عناوين النقاط */
         .key-items .item h4 {
             font-size: 1.8rem;
             color: #333;
             margin-bottom: 10px;
         }
 
+        /* النصوص اللي تحت العناوين */
         .key-items .item p {
             font-size: 1rem;
             color: #777;
         }
 
-        /* الفوتر */
+        /* الفوتر بتاع الصفحة */
         .footer {
             background-color: #333;
             color: white;
@@ -108,10 +122,12 @@
             text-align: center;
         }
 
+        /* النص اللي في الفوتر */
         .footer p {
             margin: 0;
         }
         
+        /* الأيقونات الاجتماعية في الفوتر */
         .footer .social-icons a {
             color: white;
             margin: 0 10px;
@@ -119,24 +135,29 @@
             transition: color 0.3s;
         }
 
+        /* لما يقف الفأرة على أيقونة الفيسبوك */
         .footer .social-icons a[href*="facebook.com"]:hover {
             color: #0026e1;
         }
+        /* لما يقف الفأرة على أيقونة واتساب */
         .footer .social-icons a:hover {
             color: #20c100;
         }
 
 
-        /* تحسينات للتوافق مع الشاشات الصغيرة */
+        /* تحسينات للشاشات الصغيرة */
         @media (max-width: 768px) {
+            /* تصغير حجم العنوان لو الشاشة صغيرة */
             .about h2 {
                 font-size: 2rem;
             }
 
+            /* جعل النقاط تكون واحدة تحت الأخرى لو الشاشة صغيرة */
             .key-items {
                 grid-template-columns: 1fr;
             }
 
+            /* تصغير المسافة الداخلية للنقاط لو الشاشة صغيرة */
             .key-items .item {
                 padding: 20px;
             }
