@@ -3,152 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل الأسعار | منصة المزارعين</title>
+    <title>دليل الأسعار الذكي | منصة المزارعين</title>
+    <meta name="description" content="أحدث أسعار المنتجات الزراعية وتوقعات السوق وأدوات تحليل الأسعار للمزارعين">
+    
+    <!-- تحسينات SEO -->
+    <meta property="og:title" content="دليل الأسعار الذكي | منصة المزارعين">
+    <meta property="og:description" content="تتبع أسعار المنتجات الزراعية وتوقعات السوق">
+    
+    <!-- Preload الموارد الهامة -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    
+    <!-- CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    
     <style>
-        /* تنسيق عام */
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #ff6d00;
+            --secondary-light: #ff9100;
+            --secondary-dark: #e65100;
+            --text-color: #2d3436;
+            --text-light: #636e72;
+            --light-bg: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        [data-theme="dark"] {
+            --light-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #f5f5f5;
+            --text-light: #b0b0b0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* الهيدر */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* Header */
         .header {
-            background-color: #28a745;
-            padding: 20px 0;
+            background-color: var(--primary-color);
+            padding: 15px 0;
             color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-left: 10px;
         }
 
         .navbar-nav .nav-link {
             color: white !important;
             font-weight: bold;
             padding: 10px 15px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: calc(100% - 30px);
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ffc107 !important;
+            color: var(--secondary-color) !important;
         }
 
-        .logo {
-            font-size: 30px;
-            font-weight: bold;
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: var(--transition);
         }
 
-        /* البحث */
+        .theme-toggle:hover {
+            color: var(--secondary-color);
+            transform: rotate(30deg);
+        }
+
+        /* Search Section */
+        .search-section {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            padding: 40px 0;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .search-box {
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            margin: 20px 0;
         }
 
         .search-box input {
-            width: 80%;
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 25px 0 0 25px;
-            outline: none;
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .search-box button {
-            padding: 10px 20px;
-            background-color: #28a745;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            background: var(--secondary-color);
             color: white;
             border: none;
-            border-radius: 0 25px 25px 0;
+            border-radius: 50px;
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
         }
 
         .search-box button:hover {
-            background-color: #218838;
+            background: var(--secondary-dark);
         }
 
-        /* دليل الأسعار */
-        .price-guide h3 {
-            color: #28a745;
-            margin-top: 30px;
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .price-guide ul {
-            list-style-type: none;
-            padding: 0;
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .price-guide ul li {
-            background-color: #e9ecef;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary-color);
+        }
+
+        /* Price Guide */
+        .price-guide {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .price-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 15px;
         }
 
-        .price-guide ul li:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        .price-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
-        .price-guide ul li span {
+        .price-value {
+            font-size: 1.8rem;
             font-weight: bold;
         }
 
-        .price-guide ul li .price {
-            font-size: 18px;
-            color: #333;
+        .price-change {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-top: 5px;
         }
 
-        .price-guide ul li.up {
-            color: green;
+        .price-change.up {
+            color: #4caf50;
         }
 
-        .price-guide ul li.down {
-            color: red;
+        .price-change.down {
+            color: #f44336;
         }
 
-        .price-guide p {
-            font-size: 18px;
-            color: #555;
+        .price-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
 
-        /* الفوتر */
+        .price-trend {
+            height: 100px;
+            margin-top: 20px;
+        }
+
+        /* Price Table */
+        .price-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 30px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .price-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: right;
+        }
+
+        .price-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table tr:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        /* Market Overview */
+        .market-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .overview-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .overview-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
         .footer {
             background-color: #343a40;
             color: white;
-            padding: 20px 0;
+            padding: 40px 0 20px;
+            margin-top: 50px;
         }
 
         .footer p {
             margin: 0;
         }
+
+        .footer .social-icons {
+            margin: 20px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .price-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .price-value {
+                margin-top: 10px;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر -->
-    <header class="header sticky-top">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <div class="logo">🌾 نبض الزراعة</div>
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.html">الرئيسية</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand logo" href="index.html">
+                    <i class="fas fa-leaf"></i>
+                    <span>نبض الزراعة</span>
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">الرئيسية</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about-1.html">من نحن</a>
                         </li>
@@ -159,89 +459,394 @@
                             <a class="nav-link" href="Contact (1).html">تواصل معنا</a>
                         </li>
                     </ul>
+                    
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- البحث -->
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="ابحث عن منتج...">
-        <button onclick="filterPrices()">بحث</button>
-    </div>
-
-    <!-- محتوى الخدمة -->
-    <section class="service-detail py-5">
-        <div class="container text-center">
-            <h2>دليل الأسعار</h2>
-            <p>اطلع على أسعار المنتجات الزراعية والخدمات المتاحة عبر منصتنا.</p>
+    <!-- Search Section -->
+    <section class="search-section animate">
+        <div class="search-container">
+            <h2 class="text-center mb-4">دليل الأسعار الذكي</h2>
+            <p class="text-center mb-4">أحدث أسعار المنتجات الزراعية وتوقعات السوق في مكان واحد</p>
             
-            <div class="price-guide">
-                <h3>الأسعار الحالية:</h3>
-                <ul id="priceList">
-                    <!-- سيتم تحديث الأسعار هنا من خلال JavaScript -->
-                </ul>
-                <p>للحصول على تفاصيل أكثر، يمكنك التصفح عبر قسم الأسعار في الموقع.</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن منتج زراعي...">
+                <button onclick="filterProducts()"><i class="fas fa-search"></i> بحث</button>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterProducts('all')">الكل</button>
+                <button class="filter-btn" onclick="filterProducts('up')">في ارتفاع <i class="fas fa-arrow-up"></i></button>
+                <button class="filter-btn" onclick="filterProducts('down')">في انخفاض <i class="fas fa-arrow-down"></i></button>
+                <button class="filter-btn" onclick="filterProducts('popular')">الأكثر طلباً <i class="fas fa-fire"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- الفوتر -->
-    <footer class="footer py-4">
+    <!-- Price Guide -->
+    <section class="price-guide">
+        <div class="container">
+            <!-- Featured Products -->
+            <h3 class="mb-4 animate">المنتجات المميزة</h3>
+            <div class="row">
+                <div class="col-md-4 animate" style="animation-delay: 0.1s">
+                    <div class="price-card">
+                        <div class="price-header">
+                            <div class="price-title">السماد الطبيعي</div>
+                            <div class="price-value">300 ج.م</div>
+                        </div>
+                        <div class="price-change up">
+                            <i class="fas fa-arrow-up"></i> +10 ج.م (3.3%) هذا الأسبوع
+                        </div>
+                        <div class="price-trend" id="trend1"></div>
+                        <div class="price-meta">
+                            <span><i class="fas fa-calendar"></i> آخر تحديث: اليوم</span>
+                            <span><i class="fas fa-map-marker-alt"></i> متوفر في جميع الفروع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 animate" style="animation-delay: 0.2s">
+                    <div class="price-card">
+                        <div class="price-header">
+                            <div class="price-title">بذور القمح</div>
+                            <div class="price-value">200 ج.م</div>
+                        </div>
+                        <div class="price-change down">
+                            <i class="fas fa-arrow-down"></i> -5 ج.م (2.5%) هذا الأسبوع
+                        </div>
+                        <div class="price-trend" id="trend2"></div>
+                        <div class="price-meta">
+                            <span><i class="fas fa-calendar"></i> آخر تحديث: اليوم</span>
+                            <span><i class="fas fa-map-marker-alt"></i> متوفر في جميع الفروع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 animate" style="animation-delay: 0.3s">
+                    <div class="price-card">
+                        <div class="price-header">
+                            <div class="price-title">الآلات الزراعية</div>
+                            <div class="price-value">1,500 ج.م</div>
+                        </div>
+                        <div class="price-change up">
+                            <i class="fas fa-arrow-up"></i> +20 ج.م (1.3%) هذا الأسبوع
+                        </div>
+                        <div class="price-trend" id="trend3"></div>
+                        <div class="price-meta">
+                            <span><i class="fas fa-calendar"></i> آخر تحديث: اليوم</span>
+                            <span><i class="fas fa-map-marker-alt"></i> متوفر في الفروع الكبرى</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Products Table -->
+            <h3 class="mb-4 mt-5 animate">قائمة الأسعار الكاملة</h3>
+            <div class="table-responsive animate" style="animation-delay: 0.2s">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>المنتج</th>
+                            <th>السعر الحالي</th>
+                            <th>التغيير</th>
+                            <th>التوفر</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceTableBody">
+                        <!-- سيتم ملؤها بواسطة JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Market Overview -->
+            <h3 class="mb-4 mt-5 animate">نظرة عامة على السوق</h3>
+            <div class="market-overview animate" style="animation-delay: 0.3s">
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-line"></i> أعلى المنتجات ارتفاعاً</h3>
+                    <ul class="list-unstyled">
+                        <li class="py-2 border-bottom">الكركم (+150 ج.م)</li>
+                        <li class="py-2 border-bottom">العدس (+100 ج.م)</li>
+                        <li class="py-2">الشوفان (+30 ج.م)</li>
+                    </ul>
+                </div>
+                
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-bar"></i> أكثر المنتجات طلباً</h3>
+                    <ul class="list-unstyled">
+                        <li class="py-2 border-bottom">الأرز (120 طلب)</li>
+                        <li class="py-2 border-bottom">الذرة (95 طلب)</li>
+                        <li class="py-2">الفول (80 طلب)</li>
+                    </ul>
+                </div>
+                
+                <div class="overview-card">
+                    <h3><i class="fas fa-bell"></i> تنبيهات الأسعار</h3>
+                    <p>اشترك لتصلك تنبيهات عند تغير الأسعار</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-primary" type="button">اشتراك</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container text-center">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
             <p>© 2024 منصة المزارعين. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
-    <!-- إضافة جافا سكريبت لتحديث الأسعار -->
+    <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
+    
     <script>
-        // قائمة الأسعار
-        const prices = [
-            { name: "السماد الطبيعي", price: 300, change: 10 },  // زيادة في السعر
-            { name: "بذور القمح", price: 200, change: -5 },  // انخفاض في السعر
-            { name: "الآلات الزراعية", price: 1500, change: 20 },  // زيادة في السعر
-            { name: "الأرز", price: 8200, change: -30 },
-            { name: "الذرة", price: 7800, change: 20 },
-            { name: "الفول", price: 10200, change: -70 },
-            { name: "العدس", price: 11000, change: 100 },
-            { name: "السمسم", price: 15000, change: -50 },
-            { name: "الشوفان", price: 6800, change: 30 },
-            { name: "الشعير", price: 7400, change: -20 },
-            { name: "الكركم", price: 20000, change: 150 },
-            { name: "الكينوا", price: 30000, change: -100 }
-        ];
-
-        // دالة لإظهار الأسعار
-        function displayPrices(filteredPrices) {
-            let priceList = document.getElementById("priceList");
-            priceList.innerHTML = ""; // مسح القائمة الحالية
-
-            filteredPrices.forEach(item => {
-                let li = document.createElement("li");
-                li.classList.add(item.change > 0 ? "up" : "down");
-
-                li.innerHTML = `
-                    <span>${item.name}</span>
-                    <span class="price">${item.price} جنيه</span>
-                    <span class="change">${item.change > 0 ? `+${item.change}` : item.change} جنيه</span>
-                `;
-                priceList.appendChild(li);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark Mode Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            let darkMode = localStorage.getItem('darkMode');
+            
+            if (darkMode === 'enabled') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (body.getAttribute('data-theme') === 'dark') {
+                    body.removeAttribute('data-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                } else {
+                    body.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                }
             });
-        }
-
-        // عرض الأسعار عند تحميل الصفحة
-        displayPrices(prices);
-
-        // دالة للبحث عن المنتجات
-        function filterPrices() {
-            const query = document.getElementById("searchInput").value.trim().toLowerCase();
-            const filteredPrices = prices.filter(item =>
-                item.name.toLowerCase().includes(query)
-            );
-            displayPrices(filteredPrices);
-        }
+            
+            // Progress Bar
+            window.onscroll = function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+                
+                // Back to Top Button
+                const backToTop = document.getElementById('backToTop');
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            };
+            
+            // Back to Top Function
+            document.getElementById('backToTop').addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // قائمة الأسعار
+            const products = [
+                { id: 1, name: "السماد الطبيعي", price: 300, change: 10, changePercent: 3.3, availability: "متوفر", category: "أسمدة", trend: [280, 290, 295, 300, 305, 300, 300] },
+                { id: 2, name: "بذور القمح", price: 200, change: -5, changePercent: -2.5, availability: "متوفر", category: "بذور", trend: [210, 205, 200, 195, 200, 200, 200] },
+                { id: 3, name: "الآلات الزراعية", price: 1500, change: 20, changePercent: 1.3, availability: "محدود", category: "آلات", trend: [1450, 1460, 1480, 1500, 1520, 1510, 1500] },
+                { id: 4, name: "الأرز", price: 8200, change: -30, changePercent: -0.4, availability: "متوفر", category: "محاصيل", trend: [8000, 8100, 8200, 8300, 8250, 8230, 8200] },
+                { id: 5, name: "الذرة", price: 7800, change: 20, changePercent: 0.3, availability: "متوفر", category: "محاصيل", trend: [7700, 7750, 7800, 7850, 7820, 7800, 7800] },
+                { id: 6, name: "الفول", price: 10200, change: -70, changePercent: -0.7, availability: "متوفر", category: "محاصيل", trend: [10000, 10100, 10200, 10300, 10250, 10270, 10200] },
+                { id: 7, name: "العدس", price: 11000, change: 100, changePercent: 0.9, availability: "متوفر", category: "محاصيل", trend: [10800, 10900, 11000, 11100, 11050, 11000, 11000] },
+                { id: 8, name: "السمسم", price: 15000, change: -50, changePercent: -0.3, availability: "محدود", category: "محاصيل", trend: [14800, 14900, 15000, 15100, 15050, 15050, 15000] },
+                { id: 9, name: "الشوفان", price: 6800, change: 30, changePercent: 0.4, availability: "متوفر", category: "محاصيل", trend: [6700, 6750, 6800, 6850, 6830, 6800, 6800] },
+                { id: 10, name: "الشعير", price: 7400, change: -20, changePercent: -0.3, availability: "متوفر", category: "محاصيل", trend: [7300, 7350, 7400, 7450, 7420, 7400, 7400] },
+                { id: 11, name: "الكركم", price: 20000, change: 150, changePercent: 0.8, availability: "نادر", category: "توابل", trend: [19500, 19800, 20000, 20200, 20150, 20050, 20000] },
+                { id: 12, name: "الكينوا", price: 30000, change: -100, changePercent: -0.3, availability: "نادر", category: "محاصيل", trend: [29800, 29900, 30000, 30100, 30050, 30050, 30000] }
+            ];
+            
+            // عرض جدول الأسعار
+            function renderPriceTable(filteredProducts = products) {
+                const tableBody = document.getElementById('priceTableBody');
+                tableBody.innerHTML = '';
+                
+                filteredProducts.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.className = 'animate';
+                    row.style.animationDelay = `${Math.random() * 0.3}s`;
+                    
+                    const changeClass = product.change > 0 ? 'up' : 'down';
+                    const changeIcon = product.change > 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+                    
+                    row.innerHTML = `
+                        <td>${product.name}</td>
+                        <td>${product.price.toLocaleString()} ج.م</td>
+                        <td class="${changeClass}">
+                            <i class="fas ${changeIcon}"></i> ${Math.abs(product.change)} ج.م (${product.changePercent}%)
+                        </td>
+                        <td>${product.availability}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fas fa-chart-line"></i> التفاصيل
+                            </button>
+                            <button class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-bell"></i> تنبيه
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // تصفية المنتجات
+            function filterProducts(filter = 'all') {
+                const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+                let filtered = products;
+                
+                // تطبيق البحث
+                if (searchQuery) {
+                    filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery));
+                }
+                
+                // تطبيق الفلتر
+                switch(filter) {
+                    case 'up':
+                        filtered = filtered.filter(p => p.change > 0);
+                        break;
+                    case 'down':
+                        filtered = filtered.filter(p => p.change < 0);
+                        break;
+                    case 'popular':
+                        filtered = [...filtered].sort((a, b) => b.price - a.price).slice(0, 5);
+                        break;
+                }
+                
+                // تحديث الفلاتر النشطة
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event?.target.classList.add('active');
+                
+                renderPriceTable(filtered);
+            }
+            
+            // Initialize price trends charts
+            function initTrendCharts() {
+                // Chart for product 1
+                new Chart(document.getElementById('trend1'), {
+                    type: 'line',
+                    data: {
+                        labels: ['6 أيام', '5 أيام', '4 أيام', '3 أيام', 'يومين', 'أمس', 'اليوم'],
+                        datasets: [{
+                            data: products[0].trend,
+                            borderColor: '#4caf50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+                
+                // Chart for product 2
+                new Chart(document.getElementById('trend2'), {
+                    type: 'line',
+                    data: {
+                        labels: ['6 أيام', '5 أيام', '4 أيام', '3 أيام', 'يومين', 'أمس', 'اليوم'],
+                        datasets: [{
+                            data: products[1].trend,
+                            borderColor: '#f44336',
+                            backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+                
+                // Chart for product 3
+                new Chart(document.getElementById('trend3'), {
+                    type: 'line',
+                    data: {
+                        labels: ['6 أيام', '5 أيام', '4 أيام', '3 أيام', 'يومين', 'أمس', 'اليوم'],
+                        datasets: [{
+                            data: products[2].trend,
+                            borderColor: '#4caf50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+            
+            // Initialize
+            renderPriceTable();
+            initTrendCharts();
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    filterProducts();
+                }
+            });
+        });
     </script>
 </body>
 </html>

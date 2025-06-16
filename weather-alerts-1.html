@@ -7,11 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href=".css">
     <style>
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
         
         .header {
@@ -74,6 +75,11 @@
         .footer p {
             margin: 0;
         }
+
+        .loading {
+            font-size: 18px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -113,51 +119,17 @@
             <!-- عرض حالة الطقس -->
             <div class="weather-info" id="weather-info">
                 <h4>طقس الإسكندرية الحالي</h4>
-                <div class="temperature" id="temperature">-</div>
-                <div class="condition" id="condition">-</div>
+                <div class="loading" id="loading">جاري تحميل بيانات الطقس...</div>
+                <div class="temperature d-none" id="temperature">-</div>
+                <div class="condition d-none" id="condition">-</div>
             </div>
 
             <p>يمكنك متابعة طقس الإسكندرية عبر الرابط التالي:</p>
             <a href="https://www.google.com/search?q=weather+Alexandria" target="_blank" class="btn btn-primary">الطقس في الإسكندرية</a>
         </div>
     </section>
-   
-    <script>
-       
-       
-       
-       // استبدل بـ API مفتوحة لجلب حالة الطقس
-        const apiKey = "3650b1f9232f4b8d911192734251004"
 
-
-        const city = 'Alexandria,EG'; // اسم المدينة
-
-        // دالة للحصول على حالة الطقس من OpenWeather API
-        function getWeather(b2d9ef58275929a56b86978836e2233a
-        ) {
-            $.ajax({
-                url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ar`,
-                method: 'GET',
-                success: function(data) {
-                    // عرض درجة الحرارة وحالة الطقس
-                    $('#temperature').text(data.main.temp + '°C');
-                    $('#condition').text(data.weather[0].description);
-                },
-                error: function() {
-                    $('#weather-info').html('<h4>تعذر الحصول على الطقس الحالي.</h4>');
-                }
-            });
-        }
-
-
-        
-        // استدعاء دالة الطقس عند تحميل الصفحة
-        $(document).ready(function() {
-            getWeather(); // جلب الطقس
-        });
-    </script>
-</body>
-</html> <!-- الفوتر -->
+    <!-- الفوتر -->
     <footer class="footer py-4">
         <div class="container text-center">
             <p>© 2024 منصة المزارعين. جميع الحقوق محفوظة.</p>
@@ -166,43 +138,33 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الطقس</title>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const apiKey = '3650b1f9232f4b8d911192734251004'; // ضع هنا مفتاح API الخاص بك
-            const city = 'Cairo'; // اسم المدينة اللي عايز الطقس ليها
+            const apiKey = '3650b1f9232f4b8d911192734251004'; // استبدل بالمفتاح الخاص بك
+            const city = 'Alexandria'; // اسم المدينة المراد عرض الطقس لها
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ar`;
 
             fetch(apiUrl)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('لم يتم العثور على المدينة');
+                        throw new Error('تعذر الحصول على بيانات الطقس');
                     }
                     return response.json();
                 })
                 .then(data => {
-                    const weatherInfo = `
-                        <h2>حالة الطقس في ${data.name}</h2>
-                        <p>درجة الحرارة: ${data.main.temp}°C</p>
-                        <p>الرطوبة: ${data.main.humidity}%</p>
-                        <p>الوصف: ${data.weather[0].description}</p>
-                    `;
-                    document.getElementById('weather').innerHTML = weatherInfo;
+                    // إخفاء الرسالة وعرض بيانات الطقس
+                    document.getElementById('loading').classList.add('d-none');
+                    document.getElementById('temperature').classList.remove('d-none');
+                    document.getElementById('condition').classList.remove('d-none');
+
+                    // تحديث البيانات
+                    document.getElementById('temperature').textContent = `${data.main.temp}°C`;
+                    document.getElementById('condition').textContent = data.weather[0].description;
                 })
                 .catch(error => {
-                    document.getElementById('weather').innerHTML = `<p>${error.message}</p>`;
+                    document.getElementById('loading').textContent = error.message;
                 });
         });
     </script>
-</head>
-<body>
-    <div id="weather">
-        <p>جاري تحميل بيانات الطقس...</p>
-    </div>
 </body>
 </html>

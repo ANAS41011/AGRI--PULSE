@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriMisr - كل ما تحتاجه للزراعة</title>
+    <!-- خطوط جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- مكتبة Swiper للسلايدر -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #81c784;
+            --secondary-color: #ff8f00;
+            --dark-color: #263238;
+            --light-color: #f5f5f5;
+            --gray-color: #9e9e9e;
+            --white: #ffffff;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e65100;
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        /* Header Styles */
+        .header-top {
+            background-color: var(--white);
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .search-box {
+            display: flex;
+            width: 50%;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .search-box input:focus {
+            border-color: var(--primary-light);
+        }
+        
+        .search-box button {
+            padding: 0 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-box button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a {
+            margin-right: 20px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary-color);
+        }
+        
+        .user-actions a i {
+            margin-left: 5px;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-list li {
+            position: relative;
+        }
+        
+        .nav-list li a {
+            display: block;
+            color: var(--white);
+            padding: 15px 20px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        
+        .nav-list li a:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .nav-list li:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Mega Menu */
+        .mega-menu {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 1000;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .mega-menu h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .mega-menu ul li a {
+            color: var(--dark-color);
+            padding: 8px 0;
+            font-weight: 500;
+        }
+        
+        .mega-menu ul li a:hover {
+            color: var(--primary-color);
+            background-color: transparent;
+            padding-right: 10px;
+        }
+        
+        /* Hero Slider */
+        .hero {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            position: relative;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            max-width: 500px;
+            color: var(--white);
+            z-index: 10;
+        }
+        
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: var(--white);
+            opacity: 0.7;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background-color: var(--secondary-color);
+            opacity: 1;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--white);
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.5rem;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            height: 250px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-img {
+            height: 70%;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .category-info span {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+        
+        /* Featured Products */
+        .featured-products {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-actions {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+        
+        .product-actions button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: none;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-actions button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-category {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-rating {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 80px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--secondary-color);
+            padding-right: 10px;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            margin-left: 10px;
+            color: var(--secondary-color);
+            width: 20px;
+        }
+        
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #e65100;
+        }
+        
+        .social-links {
+            display: flex;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .categories-grid,
+            .products-grid,
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top .container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+            }
+            
+            .nav-list li {
+                width: 50%;
+                text-align: center;
+            }
+            
+            .mega-menu {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .categories-grid,
+            .products-grid,
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .slide-content {
+                right: 5%;
+                max-width: 90%;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .categories-grid,
+            .products-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .user-actions a span {
+                display: none;
+            }
+            
+            .user-actions a i {
+                margin-left: 0;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="header-top">
+            <div class="container">
+                <a href="#" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    أجريمصر
+                </a>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="ابحث عن منتجات زراعية...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-heart"></i>
+                        <span>المفضلة</span>
+                    </a>
+                    <a href="#" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>السلة</span>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li>
+                        <a href="#">منتجات زراعية <i class="fas fa-chevron-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-col">
+                                <h3>البذور</h3>
+                                <ul>
+                                    <li><a href="#">بذور القمح</a></li>
+                                    <li><a href="#">بذور الأرز</a></li>
+                                    <li><a href="#">بذور الخضروات</a></li>
+                                    <li><a href="#">بذور الفاكهة</a></li>
+                                    <li><a href="#">بذور العلف</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>المبيدات</h3>
+                                <ul>
+                                    <li><a href="#">مبيدات حشرية</a></li>
+                                    <li><a href="#">مبيدات فطرية</a></li>
+                                    <li><a href="#">مبيدات أعشاب</a></li>
+                                    <li><a href="#">مبيدات نيماتودا</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>الأسمدة</h3>
+                                <ul>
+                                    <li><a href="#">أسمدة نيتروجينية</a></li>
+                                    <li><a href="#">أسمدة فوسفاتية</a></li>
+                                    <li><a href="#">أسمدة بوتاسية</a></li>
+                                    <li><a href="#">أسمدة عضوية</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>أدوات الزراعة</h3>
+                                <ul>
+                                    <li><a href="#">أدوات الري</a></li>
+                                    <li><a href="#">معدات الحراثة</a></li>
+                                    <li><a href="#">أدوات التقليم</a></li>
+                                    <li><a href="#">مستلزمات الصوب</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">خدماتنا</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">مدونة زراعية</a></li>
+                    <li><a href="#">عن الشركة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="swiper hero-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://agrimisr.com/wp-content/uploads/2023/05/agrimisr-home-slider-1.jpg" alt="زراعة حديثة">
+                    <div class="slide-content">
+                        <h2>أفضل المنتجات الزراعية بجودة عالية</h2>
+                        <p>نوفر لك كل ما تحتاجه لزراعة ناجحة من بذور وأسمدة ومبيدات بأفضل الأسعار</p>
+                        <a href="#" class="btn btn-primary">تسوق الآن</a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://agrimisr.com/wp-content/uploads/2023/05/agrimisr-home-slider-2.jpg" alt="عروض خاصة">
+                    <div class="slide-content">
+                        <h2>عروض خاصة على جميع المبيدات</h2>
+                        <p>خصومات تصل إلى 30% على مجموعة كبيرة من المبيدات الزراعية الفعالة</p>
+                        <a href="#" class="btn btn-secondary">استفد بالعرض</a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://agrimisr.com/wp-content/uploads/2023/05/agrimisr-home-slider-3.jpg" alt="استشارات زراعية">
+                    <div class="slide-content">
+                        <h2>استشارات زراعية مجانية</h2>
+                        <p>فريق من الخبراء الزراعيين جاهز لمساعدتك في حل جميع مشاكل الزراعة</p>
+                        <a href="#" class="btn btn-primary">احصل على استشارة</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">تصفح حسب التصنيفات</h2>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/seeds-category.jpg" alt="بذور">
+                    </div>
+                    <div class="category-info">
+                        <h3>البذور</h3>
+                        <span>52 منتج</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/pesticides-category.jpg" alt="مبيدات">
+                    </div>
+                    <div class="category-info">
+                        <h3>المبيدات</h3>
+                        <span>87 منتج</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/fertilizers-category.jpg" alt="أسمدة">
+                    </div>
+                    <div class="category-info">
+                        <h3>الأسمدة</h3>
+                        <span>64 منتج</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/tools-category.jpg" alt="أدوات زراعية">
+                    </div>
+                    <div class="category-info">
+                        <h3>أدوات زراعية</h3>
+                        <span>35 منتج</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">منتجات مميزة</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <span class="product-badge">جديد</span>
+                    <div class="product-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/product-1.jpg" alt="بذور قمح">
+                        <div class="product-actions">
+                            <button title="إضافة إلى المفضلة"><i class="far fa-heart"></i></button>
+                            <button title="عرض سريع"><i class="far fa-eye"></i></button>
+                            <button title="إضافة إلى السلة"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">بذور</span>
+                        <h3 class="product-title">بذور قمح صلب صنف سدس 12</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(24)</span>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">175 <span>ج.م</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/product-2.jpg" alt="مبيد حشائش">
+                        <div class="product-actions">
+                            <button title="إضافة إلى المفضلة"><i class="far fa-heart"></i></button>
+                            <button title="عرض سريع"><i class="far fa-eye"></i></button>
+                            <button title="إضافة إلى السلة"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">مبيدات</span>
+                        <h3 class="product-title">مبيد حشائش راوند أب 41% SL</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(18)</span>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">320 <span>ج.م</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="product-badge">خصم 20%</span>
+                    <div class="product-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/product-3.jpg" alt="سماد نيتروجيني">
+                        <div class="product-actions">
+                            <button title="إضافة إلى المفضلة"><i class="far fa-heart"></i></button>
+                            <button title="عرض سريع"><i class="far fa-eye"></i></button>
+                            <button title="إضافة إلى السلة"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">أسمدة</span>
+                        <h3 class="product-title">سماد يوريا 46% نيتروجين</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(32)</span>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">
+                                <span class="old-price">250</span>
+                                200 <span>ج.م</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://agrimisr.com/wp-content/uploads/2023/05/product-4.jpg" alt="رشاش زراعي">
+                        <div class="product-actions">
+                            <button title="إضافة إلى المفضلة"><i class="far fa-heart"></i></button>
+                            <button title="عرض سريع"><i class="far fa-eye"></i></button>
+                            <button title="إضافة إلى السلة"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">أدوات زراعية</span>
+                        <h3 class="product-title">رشاش زراعي ظهري 20 لتر</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(12)</span>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">450 <span>ج.م</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار أجريمصر؟</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>توصيل سريع</h3>
+                    <p>نقدم خدمة توصيل سريعة لجميع أنحاء مصر خلال 2-5 أيام عمل</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>منتجات أصلية</h3>
+                    <p>جميع منتجاتنا أصلية ومرخصة ومعتمدة من وزارة الزراعة</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني متكامل</h3>
+                    <p>فريق دعم فني متخصص جاهز للإجابة على جميع استفساراتك</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>أسعار تنافسية</h3>
+                    <p>أفضل الأسعار في السوق المصري مع خصومات وعروض دائمة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>عن أجريمصر</h3>
+                    <p>نحن منصة رائدة في توفير المنتجات الزراعية في مصر، نهدف إلى دعم المزارعين وتوفير كل ما يحتاجونه لزراعة ناجحة ومربحة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">منتجاتنا</a></li>
+                        <li><a href="#">عروض خاصة</a></li>
+                        <li><a href="#">المدونة الزراعية</a></li>
+                        <li><a href="#">عن الشركة</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">حسابي</a></li>
+                        <li><a href="#">تتبع الطلب</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h3>اتصل بنا</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 شارع الزراعة، المهندسين، الجيزة، مصر</p>
+                    <p><i class="fas fa-phone"></i> 0123456789</p>
+                    <p><i class="fas fa-envelope"></i> info@agrimisr.com</p>
+                    <p><i class="fas fa-clock"></i> الأحد - الخميس: 9 ص - 5 م</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 أجريمصر. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Hero Slider
+        const heroSwiper = new Swiper('.hero-slider', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+        });
+        
+        // Mobile Menu Toggle (for responsive design)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.createElement('button');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileMenuBtn.classList.add('mobile-menu-btn');
+            
+            const headerTop = document.querySelector('.header-top .container');
+            headerTop.prepend(mobileMenuBtn);
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                document.querySelector('.main-nav').classList.toggle('active');
+            });
+            
+            // Product card hover effect enhancement
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Add to cart animation
+            const addToCartBtns = document.querySelectorAll('.product-actions button:last-child');
+            const cartCount = document.querySelector('.cart-count');
+            
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentCount = parseInt(cartCount.textContent);
+                    cartCount.textContent = currentCount + 1;
+                    
+                    // Animation
+                    cartCount.style.transform = 'scale(1.5)';
+                    setTimeout(() => {
+                        cartCount.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
